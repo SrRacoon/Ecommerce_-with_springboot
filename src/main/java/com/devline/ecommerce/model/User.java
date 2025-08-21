@@ -1,9 +1,29 @@
 package com.devline.ecommerce.model;
 
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Users")
 public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name, username, email, direction, phone, type, password;
+
+	@OneToMany(mappedBy = "USER")
+	private List<Product> products;
+
+	@OneToMany(mappedBy = "USER")
+	private List<Order> orders;
 	
+	// CONSTRUCTORS
 	public User() {
 		
 	}
@@ -20,7 +40,7 @@ public class User {
 		this.password = password;
 	}
 	
-	
+	// GETTERS Y SETTERS
 	public Integer getId() {
 		return id;
 	}
@@ -85,11 +105,27 @@ public class User {
 		this.password = password;
 	}
 
+    public List<Product> getProducts() {
+        return products;
+    }
 
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+	public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+	// OTROS METHODS
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", username=" + username + ", email=" + email + ", direction="
 				+ direction + ", phone=" + phone + ", type=" + type + ", password=" + password + "]";
 	}
-	
+
 }

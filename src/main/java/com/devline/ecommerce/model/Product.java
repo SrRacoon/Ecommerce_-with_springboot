@@ -1,11 +1,27 @@
 package com.devline.ecommerce.model;
 
+import org.hibernate.annotations.ManyToAny;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Products")
 public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name, description, image;
 	private double price;
 	private int quantity;
+
+	@ManyToAny
+	private User USER;
 	
+	// CONSTRUCTORS
 	public Product() {
 		
 	}
@@ -19,6 +35,17 @@ public class Product {
 		this.quantity = quantity;
 	}
 
+	public Product(Integer id, String name, String description, String image, double price, int quantity, User user) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.image = image;
+		this.price = price;
+		this.quantity = quantity;
+		this.USER = user;
+	}
+
+	// GETTERS Y SETTERS
 	public Integer getId() {
 		return id;
 	}
@@ -67,6 +94,15 @@ public class Product {
 		this.quantity = quantity;
 	}
 
+    public User getUSER() {
+        return USER;
+    }
+
+    public void setUSER(User USER) {
+        this.USER = USER;
+    }
+	
+	// OTROS METHODS
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + ", price="

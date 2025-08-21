@@ -1,10 +1,28 @@
 package com.devline.ecommerce.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Details")
 public class OrderDetail {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	private double quantity, price, total;
+
+	@OneToOne
+	private Order ORDER;
+
+	@OneToOne
+	private Product Product;
 	
+	// CONSTRUCTORS
 	public OrderDetail() {
 		
 	}
@@ -17,6 +35,7 @@ public class OrderDetail {
 		this.total = total;
 	}
 
+	// GETTERS Y SETTERS
 	public Integer getId() {
 		return id;
 	}
@@ -57,11 +76,27 @@ public class OrderDetail {
 		this.total = total;
 	}
 
+	public Order getORDER() {
+        return ORDER;
+    }
+
+    public void setORDER(Order ORDER) {
+        this.ORDER = ORDER;
+    }
+
+	public Product getProduct() {
+        return Product;
+    }
+
+    public void setProduct(Product Product) {
+        this.Product = Product;
+    }
+
+	// OTROS METHODS
 	@Override
 	public String toString() {
 		return "OrderDetail [id=" + id + ", name=" + name + ", quantity=" + quantity + ", price=" + price + ", total="
 				+ total + "]";
 	}
-	
 	
 }
