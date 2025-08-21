@@ -1,11 +1,10 @@
 package com.devline.ecommerce.model;
 
-import org.hibernate.annotations.ManyToAny;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,7 +17,7 @@ public class Product {
 	private double price;
 	private int quantity;
 
-	@ManyToAny
+	@ManyToOne
 	private User USER;
 	
 	// CONSTRUCTORS

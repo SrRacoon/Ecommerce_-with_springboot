@@ -2,12 +2,11 @@ package com.devline.ecommerce.model;
 
 import java.util.Date;
 
-import org.hibernate.annotations.ManyToAny;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -21,7 +20,7 @@ public class Order {
 	private Date creationDate, receivedDate;
 	private double total;
 
-	@ManyToAny
+	@ManyToOne
 	private User USER;
 
 	@OneToOne(mappedBy = "ORDER")
